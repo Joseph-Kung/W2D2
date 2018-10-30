@@ -17,14 +17,15 @@ module SlidingPiece
   end
   
   #private
+  
   def right_horizontal_pos(start_pos)
     row, col = start_pos
     moves = []
     
     found = false
-    until col > 7 || found = true
-      if @board[[row,col]].class == NullPiece
-        col += 1
+    until col == 7 || found == true
+      col += 1
+      if @board[row][col].class == NullPiece
         moves << [row, col]
       else
         found = true
@@ -38,9 +39,9 @@ module SlidingPiece
     moves = []
     
     found = false
-    until col < 0 || found = true
-      if @board[[row,col]].class == NullPiece
-        col -= 1
+    until col == 0 || found == true
+      col -= 1
+      if @board[row][col].class == NullPiece
         moves << [row, col]
       else
         found = true
@@ -54,9 +55,9 @@ module SlidingPiece
     moves = []
     
     found = false
-    until row < 0 || found = true
-      if @board[[row,col]].class == NullPiece
-        row -= 1
+    until row == 0 || found == true
+      row -= 1
+      if @board[row][col].class == NullPiece
         moves << [row, col]
       else
         found = true
@@ -70,9 +71,9 @@ module SlidingPiece
     moves = []
     
     found = false
-    until row > 7 || found = true
-      if @board[[row,col]].class == NullPiece
-        row += 1
+    until row == 7 || found == true
+      row += 1
+      if @board[row][col].class == NullPiece
         moves << [row, col]
       else
         found = true
@@ -86,10 +87,10 @@ module SlidingPiece
     moves = []
     
     found = false
-    until row < 0 || col > 7 || found = true
-      if @board[[row,col]].class == NullPiece
-        row -= 1
-        col += 1
+    until row == 0 || col == 7 || found == true
+      row -= 1
+      col += 1
+      if @board[row][col].class == NullPiece
         moves << [row, col]
       else
         found = true
@@ -103,10 +104,10 @@ module SlidingPiece
     moves = []
     
     found = false
-    until row > 7 || col > 7 || found = true
-      if @board[[row,col]].class == NullPiece
-        row += 1
-        col += 1
+    until row == 7 || col == 7 || found == true
+      row += 1
+      col += 1
+      if @board[row][col].class == NullPiece
         moves << [row, col]
       else
         found = true
@@ -120,10 +121,10 @@ module SlidingPiece
     moves = []
     
     found = false
-    until row < 0 || col < 0 || found = true
-      if @board[[row,col]].class == NullPiece
-        row -= 1
-        col -= 1
+    until row == 0 || col == 0 || found == true
+      row -= 1
+      col -= 1
+      if @board[row][col].class == NullPiece
         moves << [row, col]
       else
         found = true
@@ -137,10 +138,10 @@ module SlidingPiece
     moves = []
     
     found = false
-    until row > 7 || col < 0 || found = true
-      if @board[[row,col]].class == NullPiece
-        row += 1
-        col -= 1
+    until row == 7 || col == 0 || found == true
+      row += 1
+      col -= 1
+      if @board[row][col].class == NullPiece
         moves << [row, col]
       else
         found = true

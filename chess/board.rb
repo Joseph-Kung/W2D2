@@ -36,19 +36,19 @@ class Board
   def starting_position
     (0..1).each do |row|
       (0..7).each do |col|
-        self[[row, col]] = Piece.new
+        self[[row, col]] = Piece.new(:white, [row,col], self.grid)
       end
     end
     
     (6..7).each do |row|
       (0..7).each do |col|
-        self[[row, col]] = Piece.new
+        self[[row, col]] = Piece.new(:black, [row,col], self.grid)
       end
     end
     
     (2..5).each do |row|
       (0..7).each do |col|
-        self[[row, col]] = NullPiece.new
+        self[[row, col]] = NullPiece.new(nil, [row,col], self.grid)
       end
     end
     
