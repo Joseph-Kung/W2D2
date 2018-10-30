@@ -1,3 +1,5 @@
+require 'byebug'
+
 module SlidingPiece
   def move_dirs
     
@@ -12,7 +14,6 @@ module SlidingPiece
     elsif self.class == Queen
       possible_moves = horizontal_moves + vertical_moves + diagonal_moves
     end
-    
     possible_moves
   end
   
@@ -25,9 +26,9 @@ module SlidingPiece
     found = false
     until col == 7 || found == true
       col += 1
-      if @board[row][col].class == NullPiece
+      if @board[[row, col]].class == NullPiece
         moves << [row, col]
-      elsif @board[row][col].color != self.color
+      elsif @board[[row, col]].color != self.color
         moves << [row, col]
         found = true
       else
@@ -44,9 +45,9 @@ module SlidingPiece
     found = false
     until col == 0 || found == true
       col -= 1
-      if @board[row][col].class == NullPiece
+      if @board[[row, col]].class == NullPiece
         moves << [row, col]
-      elsif @board[row][col].color != self.color
+      elsif @board[[row, col]].color != self.color
         moves << [row, col]
         found = true
       else
@@ -63,9 +64,9 @@ module SlidingPiece
     found = false
     until row == 0 || found == true
       row -= 1
-      if @board[row][col].class == NullPiece
+      if @board[[row, col]].class == NullPiece
         moves << [row, col]
-      elsif @board[row][col].color != self.color
+      elsif @board[[row, col]].color != self.color
         moves << [row, col]
         found = true
       else
@@ -82,9 +83,9 @@ module SlidingPiece
     found = false
     until row == 7 || found == true
       row += 1
-      if @board[row][col].class == NullPiece
+      if @board[[row, col]].class == NullPiece
         moves << [row, col]
-      elsif @board[row][col].color != self.color
+      elsif @board[[row, col]].color != self.color
         moves << [row, col]
         found = true
       else
@@ -102,9 +103,9 @@ module SlidingPiece
     until row == 0 || col == 7 || found == true
       row -= 1
       col += 1
-      if @board[row][col].class == NullPiece
+      if @board[[row, col]].class == NullPiece
         moves << [row, col]
-      elsif @board[row][col].color != self.color
+      elsif @board[[row, col]].color != self.color
         moves << [row, col]
         found = true
       else
@@ -122,9 +123,9 @@ module SlidingPiece
     until row == 7 || col == 7 || found == true
       row += 1
       col += 1
-      if @board[row][col].class == NullPiece
+      if @board[[row, col]].class == NullPiece
         moves << [row, col]
-      elsif @board[row][col].color != self.color
+      elsif @board[[row, col]].color != self.color
         moves << [row, col]
         found = true
       else
@@ -142,9 +143,9 @@ module SlidingPiece
     until row == 0 || col == 0 || found == true
       row -= 1
       col -= 1
-      if @board[row][col].class == NullPiece
+      if @board[[row, col]].class == NullPiece
         moves << [row, col]
-      elsif @board[row][col].color != self.color
+      elsif @board[[row, col]].color != self.color
         moves << [row, col]
         found = true
       else
@@ -162,9 +163,9 @@ module SlidingPiece
     until row == 7 || col == 0 || found == true
       row += 1
       col -= 1
-      if @board[row][col].class == NullPiece
+      if @board[[row, col]].class == NullPiece
         moves << [row, col]
-      elsif @board[row][col].color != self.color
+      elsif @board[[row, col]].color != self.color
         moves << [row, col]
         found = true
       else

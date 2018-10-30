@@ -44,6 +44,21 @@ class Board
   def checkmate?(color)
   end
   
+  def dup
+    result = Board.new
+    (0..7).each do |row|
+      (0..7).each do |col|
+        if self[[row, col]].class != NullPiece
+          result[[row, col]] = self[[row, col]].dup
+        else
+          result[[row, col]] = NullPiece.instance
+        end 
+      end
+    end
+    
+    result
+  end
+  
   # private
   def [](pos)
     row, col = pos
@@ -60,37 +75,37 @@ class Board
     #spawn non-pawn black pieces
     (0..7).each do |col|
       if col == 0 || col == 7
-        self[[0, col]] = Rook.new(:black, [0,col], self.grid)
+        self[[0, col]] = Rook.new(:black, [0,col], self)
       elsif col == 1 || col == 6
-        self[[0, col]] = Knight.new(:black, [0,col], self.grid)
+        self[[0, col]] = Knight.new(:black, [0,col], self)
       elsif col == 2 || col == 5
-        self[[0, col]] = Bishop.new(:black, [0,col], self.grid)
+        self[[0, col]] = Bishop.new(:black, [0,col], self)
       elsif col == 3
-        self[[0, col]] = Queen.new(:black, [0,col], self.grid)
+        self[[0, col]] = Queen.new(:black, [0,col], self)
       else
-        self[[0, col]] = King.new(:black, [0,col], self.grid)
+        self[[0, col]] = King.new(:black, [0,col], self)
       end
     end
     
     #spawn non-pawn white pieces
     (0..7).each do |col|
       if col == 0 || col == 7
-        self[[7, col]] = Rook.new(:white, [7,col], self.grid)
+        self[[7, col]] = Rook.new(:white, [7,col], self)
       elsif col == 1 || col == 6
-        self[[7, col]] = Knight.new(:white, [7,col], self.grid)
+        self[[7, col]] = Knight.new(:white, [7,col], self)
       elsif col == 2 || col == 5
-        self[[7, col]] = Bishop.new(:white, [7,col], self.grid)
+        self[[7, col]] = Bishop.new(:white, [7,col], self)
       elsif col == 3
-        self[[7, col]] = Queen.new(:white, [7,col], self.grid)
+        self[[7, col]] = Queen.new(:white, [7,col], self)
       else
-        self[[7, col]] = King.new(:white, [7,col], self.grid)
+        self[[7, col]] = King.new(:white, [7,col], self)
       end
     end
 
     #spawn pawns
     (0..7).each do |col|
-      self[[1, col]] = Piece.new(:black, [1,col], self.grid)
-      self[[6, col]] = Piece.new(:white, [6,col], self.grid)
+      self[[1, col]] = Piece.new(:black, [1,col], self)
+      self[[6, col]] = Piece.new(:white, [6,col], self)
     end
     
     (2..5).each do |row|

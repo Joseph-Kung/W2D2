@@ -1,3 +1,5 @@
+require 'byebug'
+
 module SteppingPiece
   def move_dirs
     
@@ -22,8 +24,7 @@ module SteppingPiece
       x_shift = row + x
       y_shift = col + y
       next unless x_shift.between?(0, 7) && y_shift.between?(0, 7)
-    
-      if @board[x_shift][y_shift].class == NullPiece || @board[x_shift][y_shift].color != self.color
+      if @board[[x_shift, y_shift]].class == NullPiece || @board[[x_shift, y_shift]].color != self.color
         moves << [x_shift, y_shift]
       end
     end
@@ -41,8 +42,7 @@ module SteppingPiece
       x_shift = row + x
       y_shift = col + y
       next unless x_shift.between?(0, 7) && y_shift.between?(0, 7)
-    
-      if @board[x_shift][y_shift].class == NullPiece || @board[x_shift][y_shift].color != self.color
+      if @board[[x_shift, y_shift]].class == NullPiece || @board[[x_shift, y_shift]].color != self.color
         moves << [x_shift, y_shift]
       end
     end
