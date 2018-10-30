@@ -1,7 +1,8 @@
 require_relative 'board'
 
 class Piece
-  attr_reader :color, :pos, :board, :symbol
+  attr_reader :color, :board, :symbol
+  attr_accessor :pos
   
   def initialize(color, pos, board)
     @color = color 
@@ -12,5 +13,9 @@ class Piece
   
   def moves(pos)
     
+  end
+  
+  def inspect
+    puts "#{self.symbol}, #{self.color}, #{self.pos}"
   end
 end

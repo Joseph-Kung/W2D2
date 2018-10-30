@@ -19,14 +19,29 @@ class Board
   end
   
   def move_piece(start_pos, end_pos)
-    #byebug
     if self[start_pos].is_a?(NullPiece)
       raise StartPosError, 'There is no piece at that position!'
     elsif self[end_pos].class == Piece
       raise EndPosError, 'There is already a piece there!'
     else
       self[start_pos], self[end_pos] = self[end_pos], self[start_pos]
+      self[end_pos].pos = end_pos
     end
+  end
+  
+  def in_check?(color)
+    king = grid.flatten.select {|piece| piece.class == King && piece.color == color}.first
+    king_color = king.color
+    king_pos = king.pos
+    
+    enemies = grid.flatten.select {|piece| piece.color != king_color && piece.class != NullPiece && piece.class != Piece}
+    enemies.each do |enemy|
+      return true if enemy.move_dirs.include?(king_pos)
+    end
+    false
+  end
+  
+  def checkmate?(color)
   end
   
   # private
@@ -87,5 +102,8 @@ class Board
     def valid_pos?(pos)
       pos.all? {|coor| coor.between?(0,7)}
     end
+  end
+  
+  def inspect
   end
 end
