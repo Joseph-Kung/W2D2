@@ -34,21 +34,46 @@ class Board
   end
   
   def starting_position
-    (0..1).each do |row|
-      (0..7).each do |col|
-        self[[row, col]] = Piece.new(:white, [row,col], self.grid)
+    
+    #spawn non-pawn black pieces
+    (0..7).each do |col|
+      if col == 0 || col == 7
+        self[[0, col]] = Rook.new(:black, [row,col], self.grid)
+      elsif col == 1 || col == 6
+        self[[0, col]] = Knight.new(:black, [row,col], self.grid)
+      elsif col == 2 || col == 5
+        self[[0, col]] = Bishop.new(:black, [row,col], self.grid)
+      elsif col == 4
+        self[[0, col]] = Queen.new(:black, [row,col], self.grid)
+      else
+        self[[0, col]] = King.new(:black, [row,col], self.grid)
       end
     end
     
-    (6..7).each do |row|
-      (0..7).each do |col|
-        self[[row, col]] = Piece.new(:black, [row,col], self.grid)
+    #spawn non-pawn white pieces
+    (0..7).each do |col|
+      if col == 0 || col == 7
+        self[[7, col]] = Rook.new(:white, [row,col], self.grid)
+      elsif col == 1 || col == 6
+        self[[7, col]] = Knight.new(:white, [row,col], self.grid)
+      elsif col == 2 || col == 5
+        self[[7, col]] = Bishop.new(:white, [row,col], self.grid)
+      elsif col == 4
+        self[[7, col]] = Queen.new(:white, [row,col], self.grid)
+      else
+        self[[7, col]] = King.new(:white, [row,col], self.grid)
       end
+    end
+
+    #spawn pawns
+    (0..7).each do |col|
+      self[[1, col]] = Piece.new(:black, [row,col], self.grid)
+      self[[6, col]] = Piece.new(:white, [row,col], self.grid)
     end
     
     (2..5).each do |row|
       (0..7).each do |col|
-        self[[row, col]] = NullPiece.new(nil, [row,col], self.grid)
+        self[[row, col]] = NullPiece.instance
       end
     end
     
