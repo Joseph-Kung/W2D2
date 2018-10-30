@@ -1,6 +1,7 @@
 require "colorize"
 require_relative "cursor"
 
+
 class Display
   def initialize(board)
     @board = board
@@ -30,15 +31,15 @@ class Display
     row.each_with_index do |piece, idx|
       if piece.is_a?(NullPiece)
         if cursor_pos == [i, idx]
-          result << "   ".colorize(:background => :red)
+          result << "#{piece.symbol}".colorize(:background => :red)
         else
-          result << "   "
+          result << "#{piece.symbol}"
         end
       else
         if cursor_pos == [i, idx]
-          result << " x ".colorize(:background => :red)
+          result << " #{piece.symbol} ".colorize(:color => piece.color, :background => :red)
         else
-          result << " x "
+          result << " #{piece.symbol} ".colorize(:color => piece.color)
         end
       end
     end
