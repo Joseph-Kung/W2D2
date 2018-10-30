@@ -1,9 +1,9 @@
 module SlidingPiece
   def move_dirs
     
-    horizontal_moves = right_horizontal_pos(self.pos) + left_horizontal_pos(self.pos)
-    vertical_moves = up_vertical_pos(self.pos) + down_vertical_pos(self.pos)
-    diagonal_moves = up_left_diagonal_pos(self.pos) + up_right_diagonal_pos(self.pos) + down_left_diagonal_pos(self.pos) + down_right_diagonal_pos(self.pos)
+    horizontal_moves = self.right_horizontal_pos + self.left_horizontal_pos
+    vertical_moves = self.up_vertical_pos + self.down_vertical_pos
+    diagonal_moves = self.up_left_diagonal_pos + self.up_right_diagonal_pos + self.down_left_diagonal_pos + self.down_right_diagonal_pos
     
     if self.class == Rook
       possible_moves = horizontal_moves + vertical_moves
@@ -18,8 +18,8 @@ module SlidingPiece
   
   #private
   
-  def right_horizontal_pos(start_pos)
-    row, col = start_pos
+  def right_horizontal_pos
+    row, col = self.pos
     moves = []
     
     found = false
@@ -27,6 +27,9 @@ module SlidingPiece
       col += 1
       if @board[row][col].class == NullPiece
         moves << [row, col]
+      elsif @board[row][col].color != self.color
+        moves << [row, col]
+        found = true
       else
         found = true
       end
@@ -34,8 +37,8 @@ module SlidingPiece
     moves
   end
   
-  def left_horizontal_pos(start_pos)
-    row, col = start_pos
+  def left_horizontal_pos
+    row, col = self.pos
     moves = []
     
     found = false
@@ -43,6 +46,9 @@ module SlidingPiece
       col -= 1
       if @board[row][col].class == NullPiece
         moves << [row, col]
+      elsif @board[row][col].color != self.color
+        moves << [row, col]
+        found = true
       else
         found = true
       end
@@ -50,8 +56,8 @@ module SlidingPiece
     moves
   end
   
-  def up_vertical_pos(start_pos)
-    row, col = start_pos
+  def up_vertical_pos
+    row, col = self.pos
     moves = []
     
     found = false
@@ -59,6 +65,9 @@ module SlidingPiece
       row -= 1
       if @board[row][col].class == NullPiece
         moves << [row, col]
+      elsif @board[row][col].color != self.color
+        moves << [row, col]
+        found = true
       else
         found = true
       end
@@ -66,8 +75,8 @@ module SlidingPiece
     moves
   end
   
-  def down_vertical_pos(start_pos)
-    row, col = start_pos
+  def down_vertical_pos
+    row, col = self.pos
     moves = []
     
     found = false
@@ -75,6 +84,9 @@ module SlidingPiece
       row += 1
       if @board[row][col].class == NullPiece
         moves << [row, col]
+      elsif @board[row][col].color != self.color
+        moves << [row, col]
+        found = true
       else
         found = true
       end
@@ -82,8 +94,8 @@ module SlidingPiece
     moves
   end
   
-  def up_right_diagonal_pos(start_pos)
-    row, col = start_pos
+  def up_right_diagonal_pos
+    row, col = self.pos
     moves = []
     
     found = false
@@ -92,6 +104,9 @@ module SlidingPiece
       col += 1
       if @board[row][col].class == NullPiece
         moves << [row, col]
+      elsif @board[row][col].color != self.color
+        moves << [row, col]
+        found = true
       else
         found = true
       end
@@ -99,8 +114,8 @@ module SlidingPiece
     moves
   end
   
-  def down_right_diagonal_pos(start_pos)
-    row, col = start_pos
+  def down_right_diagonal_pos
+    row, col = self.pos
     moves = []
     
     found = false
@@ -109,6 +124,9 @@ module SlidingPiece
       col += 1
       if @board[row][col].class == NullPiece
         moves << [row, col]
+      elsif @board[row][col].color != self.color
+        moves << [row, col]
+        found = true
       else
         found = true
       end
@@ -116,8 +134,8 @@ module SlidingPiece
     moves
   end
   
-  def up_left_diagonal_pos(start_pos)
-    row, col = start_pos
+  def up_left_diagonal_pos
+    row, col = self.pos
     moves = []
     
     found = false
@@ -126,6 +144,9 @@ module SlidingPiece
       col -= 1
       if @board[row][col].class == NullPiece
         moves << [row, col]
+      elsif @board[row][col].color != self.color
+        moves << [row, col]
+        found = true
       else
         found = true
       end
@@ -133,8 +154,8 @@ module SlidingPiece
     moves
   end
   
-  def down_left_diagonal_pos(start_pos)
-    row, col = start_pos
+  def down_left_diagonal_pos
+    row, col = self.pos
     moves = []
     
     found = false
@@ -143,6 +164,9 @@ module SlidingPiece
       col -= 1
       if @board[row][col].class == NullPiece
         moves << [row, col]
+      elsif @board[row][col].color != self.color
+        moves << [row, col]
+        found = true
       else
         found = true
       end
