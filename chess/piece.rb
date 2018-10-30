@@ -1,7 +1,8 @@
 class Piece
-  def initialize(color, type, pos, board)
+  attr_reader :color, :pos, :board
+  
+  def initialize(color, pos, board)
     @color = color 
-    @type = type
     @pos = pos
     @board = board
   end
@@ -11,9 +12,6 @@ class Piece
   end
 end
 
-module SlidingPiece
-  
-end
 
 module SteppingPiece
   
