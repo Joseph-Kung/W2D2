@@ -24,8 +24,11 @@ class Board
     elsif self[end_pos].class == Piece
       raise EndPosError, 'There is already a piece there!'
     else
+      self[start_pos].pos = end_pos
       self[start_pos], self[end_pos] = self[end_pos], self[start_pos]
-      self[end_pos].pos = end_pos
+      
+      self[start_pos].board = self
+      self[end_pos].board = self
     end
   end
   
@@ -101,7 +104,7 @@ class Board
         self[[7, col]] = King.new(:white, [7,col], self)
       end
     end
-
+    
     #spawn pawns
     (0..7).each do |col|
       self[[1, col]] = Piece.new(:black, [1,col], self)

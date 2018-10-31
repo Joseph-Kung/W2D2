@@ -2,8 +2,8 @@ require_relative 'board'
 require 'byebug'
 
 class Piece
-  attr_reader :color, :board, :symbol
-  attr_accessor :pos
+  attr_reader :color, :symbol
+  attr_accessor :pos, :board
   
   def initialize(color, pos, board)
     @color = color 

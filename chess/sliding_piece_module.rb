@@ -158,8 +158,8 @@ module SlidingPiece
   def down_left_diagonal_pos
     row, col = self.pos
     moves = []
-    
     found = false
+    byebug
     until row == 7 || col == 0 || found == true
       row += 1
       col -= 1
